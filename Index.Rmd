@@ -1,14 +1,14 @@
 ---
-title: "Flexdashboard with opencpu back-end"
+title: "Insight for "
 output: 
   flexdashboard::flex_dashboard:
-    theme: cerulean
+    theme: bootstrap
     orientation: rows
     logo: testlogo.png
-    social: [ "twitter", "facebook"]
-    navbar:
-      - { title: "About", href: "http://data-laborer.eu", align: right }
-    source_code: "https://github.com/YvesCR/flexocpu"
+    #social: [ "twitter", "facebook"]
+    #navbar:
+    #  - { title: "About", href: "http://data-laborer.eu", align: right }
+    #source_code: "https://github.com/YvesCR/flexocpu"
 ---
 
 <script src="inst/www/jquery-1.10.2.min.js"> </script>
@@ -132,26 +132,65 @@ $(function(){
 library(flexdashboard)
 ```
 
-Page 1
+
+
+Data Exploration
+===================================== 
+
+Row {data-height=300}
+-----------------------------------------------------------------------
+
+### Age Height by Sex
+
+```{r, fig.width=15}
+data("howell")
+
+ggplot2::ggplot(data = howell, ggplot2::aes(x = age, y = height, color = as.factor(male))) +
+  ggplot2::geom_point()
+```
+
+### Age Weight by Sex
+
+```{r, fig.width=15}
+data("howell")
+
+ggplot2::ggplot(data = howell, ggplot2::aes(x = age, y = weight, color = as.factor(male))) +
+  ggplot2::geom_point()
+```
+
+Row {data-height=700}
+-----------------------------------------------------------------------
+
+### Mapping
+
+<button type="button" id="myBtn" >Map</button>
+
+<iframe src="about:blank" style='height: 620px;width: 1300px;display: none;'></iframe>
+
+
+
+
+
+
+
+Predictive Model
 ===================================== 
 
 Row {data-height=200}
 -------------------------------------
 
-### Definition {data-width=800}
-
-Test for a dashboard with opencpu.
-
-Loading a page is slow due to the size of the web page loaded: so far 1.4 Mb.
-Most of the size is due to the flexdashboard interface (multiple pages & tab adjustment).
-
-There is a trade off between the complexity of the page (mobile compatible or not, multiple pages, etc.) and the size of the page.
-
-### Selection (integer between 1 and 544) {data-width=200}
+### Select Batch Number {data-width=200}
 
 <input type="integer" class="form-control" id="myid" value="1" style = "width: 90%;">
 
 <button type="submit" id="idsubmit" class="btn btn-default">Update dashboard!</button>
+
+
+### Definition {data-width=800}
+
+Select the required batch number for advanced exploration of the inputs that determine...  
+
+
  
 Row {data-height=200}
 -----------------------------------------------------------------------
@@ -220,7 +259,11 @@ Row {data-height=400}
 
 <div id="plotdiv" style='height: 270px'></div> 
 
-Page 2
+
+
+
+
+Prescribed Actions
 ===================================== 
 
 Row {data-height=300}
@@ -228,27 +271,3 @@ Row {data-height=300}
 
 ### Age Height by Sex
 
-```{r, fig.width=15}
-data("howell")
-
-ggplot2::ggplot(data = howell, ggplot2::aes(x = age, y = height, color = as.factor(male))) +
-  ggplot2::geom_point()
-```
-
-### Age Weight by Sex
-
-```{r, fig.width=15}
-data("howell")
-
-ggplot2::ggplot(data = howell, ggplot2::aes(x = age, y = weight, color = as.factor(male))) +
-  ggplot2::geom_point()
-```
-
-Row {data-height=700}
------------------------------------------------------------------------
-
-### Mapping
-
-<button type="button" id="myBtn" >Map</button>
-
-<iframe src="about:blank" style='height: 620px;width: 1300px;display: none;'></iframe>
