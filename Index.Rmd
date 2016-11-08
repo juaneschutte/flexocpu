@@ -1,5 +1,5 @@
 ---
-title: "Insight for so so"
+title: "Insight for so so so"
 output: 
   flexdashboard::flex_dashboard:
     theme: bootstrap
